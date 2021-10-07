@@ -84,7 +84,7 @@ const createPost = async (event) => {
 
 // UPDATE_POST
 // NOTE: The expression props inside `params` are specific to DynamoDB which contains reserved key words
-// ---- Any instance of a `DynamoDB` reserved word can be escaped by the prepending # character
+// ---- Any instance of a `DynamoDB` reserved word can be escaped by the prepending `#` character
 const updatePost = async (event) => {
   const response = {
     "body": "",
