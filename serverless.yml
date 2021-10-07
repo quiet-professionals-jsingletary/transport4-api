@@ -5,7 +5,7 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: us-east-2
-  lambdaHashingVersion: "20201221"
+  lambdaHashingVersion: '20201221'
   environment: 
     DYNAMODB_TABLE_NAME: ${self:custom.postsTableName}
 
@@ -27,9 +27,9 @@ functions:
           path: post/{postId}
           method: GET
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: Allow
         Action:
-          - "dynamodb:GetItem"
+          - dynamodb:GetItem
         Resource: !GetAtt PostsTable.Arn
 
   # _CREATE_
@@ -43,9 +43,9 @@ functions:
           path: post
           method: POST
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: Allow
         Action:
-          - "dynamodb:PutItem"
+          - dynamodb:PutItem
         Resource: !GetAtt PostsTable.Arn
 
 # _UPDATE_
@@ -59,9 +59,9 @@ functions:
           path: post/{postId}
           method: PUT
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: Allow
         Action:
-          - "dynamodb:UpdateItem"
+          - dynamodb:UpdateItem
         Resource: !GetAtt PostsTable.Arn
 
 # _DELETE_ #
@@ -75,9 +75,9 @@ functions:
           path: post/{postId}
           method: DELETE
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: Allow
         Action:
-          - "dynamodb:DeleteItem"
+          - dynamodb:DeleteItem
         Resource: !GetAtt PostsTable.Arn
 
   # _GET_ALL_POSTS # 
@@ -92,9 +92,9 @@ functions:
           path: posts
           method: GET
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: Allow
         Action:
-          - "dynamodb:Scan"
+          - dynamodb:Scan
         Resource: !GetAtt PostsTable.Arn
 
 resources:
