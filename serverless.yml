@@ -99,13 +99,13 @@ functions:
 
 resources:
   Resources:
-    PostsTable:
+    postsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.postsTableName}
         AttributeDefinitions:
           - AttributeName: postId
-          - AttributeType: S
+            AttributeType: S
         KeySchema:
           - AttributeName: postId
             KeyType: HASH
