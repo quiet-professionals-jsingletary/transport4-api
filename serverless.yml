@@ -24,7 +24,7 @@ functions:
     timeout: 5 # seconds
     events:
       - http:
-          path: post/{postId}
+          path: post/{id}
           method: GET
     iamRoleStatements:
       - Effect: Allow
@@ -56,7 +56,7 @@ functions:
     timeout: 5 # seconds
     events:
       - http:
-          path: post/{postId}
+          path: post/{id}
           method: PUT
     iamRoleStatements:
       - Effect: Allow
@@ -72,7 +72,7 @@ functions:
     timeout: 5 # seconds
     events:
       - http:
-          path: post/{postId}
+          path: post/{id}
           method: DELETE
     iamRoleStatements:
       - Effect: Allow
@@ -104,10 +104,10 @@ resources:
       Properties:
         TableName: ${self:custom.postsTableName}
         AttributeDefinitions:
-          - AttributeName: postId
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: postId
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

@@ -6,6 +6,7 @@
 /*/
 
 const db = require("./db");
+const { v4: uuidv4 } = require('uuid');
 const {
   GetItemCommand,
   PutItemCommand,
@@ -13,7 +14,10 @@ const {
   DeleteItemCommand,
   ScanCommand
 } = require("@aws-sdk/client-dynamodb");
-const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
+const { 
+  marshall,
+  unmarshall 
+} = require("@aws-sdk/util-dynamodb");
 
 // GET_POST
 const getPost = async (event) => {
@@ -25,7 +29,7 @@ const getPost = async (event) => {
   try {
     const params = {
       TableName: process.env.DYNAMODB_TABLE_NAME,
-      Key: marshall({ postId: event.pathParameters.postId })
+      Key: marshall({ id: event.pathParameters.id })
     };
     const { Item } = await db.send(new GetItemCommand(params));
     console.log({ Item });
@@ -52,15 +56,21 @@ const getPost = async (event) => {
 // CREATE_POST
 const createPost = async (event) => {
   const response = {
-    "body": "",
+    "body": {},
     "statusCode": 200
   }
 
   try {
-    const body = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
     const params = {
       TableName: process.env.DYNAMODB_TABLE_NAME,
-      Item: marshall(body || {})
+      Item: {
+        "postId": uuidv4(),
+        "recipeName": data.recipeName,
+        "recipeDescription": data.recipeDescription,
+        "recipeInstructions": data.recipeInstructions,
+        "recipeIngredients": data.recipeIngredients
+      }
     };
     const createResult = await db.send(new PutItemCommand(params));
 
@@ -97,7 +107,7 @@ const updatePost = async (event) => {
 
     const params = {
       TableName: process.env.DYNAMODB_TABLE_NAME,
-      Key: marshall({ postId: event.pathParameters.postId }),
+      Key: marshall({ id: event.pathParameters.id }),
       UpdateExpression: `SET ${objKeys.map((_, index) => `#key${index} = :value${index}`).join(", ")}`,
       ExpressionAttributeNames: objKeys.reduce((acc, key, index) => ({
         ...acc,
@@ -140,7 +150,7 @@ const deletePost = async (event) => {
   try {
     const params = {
       TableName: process.env.DYNAMODB_TABLE_NAME,
-      Key: marshall({ postId: event.pathParameters.postId })
+      Key: marshall({ id: event.pathParameters.id })
 
     }
     const deleteResult = await db.send(new DeleteItemCommand(params));
@@ -175,7 +185,7 @@ const getPosts= async (event) => {
     console.log({ Items });
 
     response.body = JSON.stringify({
-      message: "Successfully fetched post data.",
+      message: "Successfully fetched all.",
       data: Items.map((item) => unmarshall(item)),
       Items
     });
