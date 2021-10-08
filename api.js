@@ -174,7 +174,7 @@ const deletePost = async (event) => {
 };
 
 // GET_POSTS
-const getPosts= async (event) => {
+const getPosts = async () => {
   const response = {
     body: "",
     statusCode: 200
@@ -205,6 +205,7 @@ const getPosts= async (event) => {
 
 module.exports = {
   getPost,
+  getPosts,
   createPost,
   updatePost,
   deletePost
