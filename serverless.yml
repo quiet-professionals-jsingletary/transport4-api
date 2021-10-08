@@ -82,9 +82,9 @@ functions:
 
   # _GET_ALL_POSTS # 
   # _This endpoint will be used for demo purposes only
-  getAllPosts:
-    handler: api.getAllPosts
-    name: get-all-posts
+  getPosts:
+    handler: api.getPosts
+    name: get-posts
     memorySize: 128 # mb
     timeout: 5 # seconds
     events:

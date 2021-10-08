@@ -138,8 +138,6 @@ const deletePost = async (event) => {
   }
 
   try {
-    const body = JSON.parse(event.body);
-
     const params = {
       TableName: process.env.DYNAMODB_TABLE_NAME,
       Key: marshall({ postId: event.pathParameters.postId })
@@ -165,8 +163,8 @@ const deletePost = async (event) => {
   return response;
 };
 
-// GET_ALL_POSTS
-const getPost = async (event) => {
+// GET_POSTS
+const getPosts= async (event) => {
   const response = {
     "body": "",
     "statusCode": 200
