@@ -56,7 +56,7 @@ const getPost = async (event) => {
 // CREATE_POST
 const createPost = async (event) => {
   const response = {
-    "body": {},
+    "body": "",
     "statusCode": 200
   }
 
