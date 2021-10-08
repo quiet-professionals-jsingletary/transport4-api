@@ -1,4 +1,15 @@
-# Objective
+# Transport4 - API
+
+Here is the main URI: https://koiihe2l31.execute-api.us-east-2.amazonaws.com/dev
+
+Endpoints:
+- post (POST)
+- post/{id} (DELETE, GET, PUT)
+- posts (GET)
+
+Pass in Key as Header: `X-Api-Key: gK9RlVNWmM7tDqzz4KFo39YhJlC7gDWV7VDcQGqN`
+
+## Objective
 
 1. Create a simple "Taco Recipe" REST API. 
 
