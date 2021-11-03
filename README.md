@@ -7,7 +7,7 @@ Endpoints:
 - post/{id} (DELETE, GET, PUT)
 - posts (GET)
 
-Pass in Key as Header: `X-Api-Key: gK9RlVNWmM7tDqzz4KFo39YhJlC7gDWV7VDcQGqN`
+Pass in Key as Header: `X-Api-Key` provided upon request.
 
 ## Objective
 
